@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SSAMC - African Medicine and Vocational Training Institute">
+    <title>SSAMC | Education & Skills Development</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2A5C3C;
+            --secondary: #D4A017;
+            --dark: #1A2F1D;
+            --light: #F4F5ED;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            padding-top: 70px;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255,255,255,0.95);
+            padding: 1rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(rgba(42,92,60,0.9), rgba(42,92,60,0.8)), url('https://images.unsplash.com/photo-1604881991720-f91add269bed');
+            background-size: cover;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .hero-content {
+            animation: slideUp 1s ease;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            margin-top: 2rem;
+            background: var(--secondary);
+            color: white;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+        }
+
+        /* About Section */
+        .about {
+            padding: 5rem 2rem;
+            background: white;
+        }
+
+        .about-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .mission-section {
+            display: grid;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .mission-card, .vision-box {
+            background: var(--light);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .icon {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .mission-item p {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        /* Programs Section */
+        .programs {
+            padding: 5rem 2rem;
+            background: var(--light);
+        }
+
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .program-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            text-align: center;
+        }
+
+        .program-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .program-card i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        /* Fees Section */
+        .fees {
+            padding: 5rem 2rem;
+            background: white;
+        }
+
+        .fees-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .fee-card {
+            background: var(--light);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .fee-card i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        /* Gallery Section */
+        .gallery {
+            padding: 5rem 2rem;
+            background: var(--light);
+        }
+
+        .gallery h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            aspect-ratio: 1 / 1;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(42, 92, 60, 0.8);
+            color: white;
+            padding: 1rem;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
+        }
+
+        /* Application Form */
+        .application {
+            padding: 5rem 2rem;
+            background: white;
+        }
+
+        .application-form {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid var(--light);
+            border-radius: 8px;
+        }
+
+        .program-select {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .program-option {
+            border: 2px solid var(--light);
+            padding: 1rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .program-option.selected {
+            border-color: var(--primary);
+            background: rgba(42,92,60,0.05);
+        }
+
+        /* Form Enhancements */
+        .form-section {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: rgba(42,92,60,0.05);
+            border-radius: 10px;
+        }
+
+        .form-section h3 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--secondary);
+            padding-bottom: 0.5rem;
+        }
+
+        .banking-info {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+        }
+
+        .banking-info p {
+            margin: 0.5rem 0;
+            color: var(--dark);
+        }
+
+        .terms {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .terms label {
+            font-size: 0.9rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 5rem 2rem;
+            background: var(--light);
+            text-align: center;
+        }
+
+        .contact-details {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .contact-details i {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .social-icons {
+            margin: 2rem 0;
+        }
+
+        .social-icons a {
+            color: white;
+            margin: 0 1rem;
+            font-size: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .programs-grid, .fees-grid, .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-content">
+            <div class="logo">SSAMC</div>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#programs">Programs</a>
+                <a href="#gallery">Gallery</a>
+                <a href="#fees">Fees</a>
+                <a href="#apply">Apply</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Empowering Communities Through Education</h1>
+            <p>Traditional medicine and modern vocational training</p>
+            <a href="#apply" class="cta-button">Enroll Now</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="about-content">
+            <h2>About SSAMC</h2>
+            <div class="mission-section">
+                <div class="mission-card">
+                    <i class="fas fa-bullseye icon"></i>
+                    <h3>Our Mission</h3>
+                    <div class="mission-points">
+                        <div class="mission-item">
+
+            <p>Sakhokuhle School of African Medicine and crafting Programs which are highly flexible and are geared towards 
+                equipping and empowering African Health Practitioners who will change the world.</p>
+
+​
+
+            <p>All courses are ancestral and are available in print, disk downloaded digit format our courses are 
+            available to everyone who meets our entrance requirements. Our entire course requires comprehensive study and self-discipline.</p>
+
+​
+
+            <p>Teaching and learning excellence are fundamental to the vision and mission of  
+            SSAMC institution that is committed to provide high quality education as it strives towards the achievement of the provincial standards.</p>
+
+​
+
+            <p>The SSAMC's commitment to teaching and learning is innovative and responsive to society needs, 
+            it is geared towards achieving the highest quality for student's development including curriculum review and quality assurance for scholarly excellence.</p>
+
+​
+
+            <p>The institution settled in the understanding that teaching and learning is a trans disciplinary issue, to a 
+                large degree humanizing pedagogy and critical thinking in the context of the institution, humanizing pedagogy speaks to 
+                both students and staff who should treat on another in a humane context.</p>
+
+
+                <p>The institution aims to qualitatively and quantitatively grow its research outputs in niche 
+                areas that will ensure that differentiates itself from other institutions, educators and innovators.</p>
+
+​
+
+                <p>SSAMC seeks to expand its current community engagement relationship and improve its community of practice by bringing more people together by 
+                pooling wisdom and through integrating teaching, learning and research into indigenous knowledge system.
+                The institution wishes to provide more supportive environment encompassing the entire student experience from academic intellectual 
+                development to social aspects, including CRAFTING and cultural facilities to develop a well-balanced and rounded academic graduate.</p>
+
+
+                <p>The institution promotes human resources as an ongoing strategy to train and equip all personnel, 
+                thus promoting a service ethic of excellence and professionalism.</p>
+
+​
+
+                <p>A culture of lifelong inquiry and research is encouraged, as is the promotion of innovative teaching and 
+                learning methodologies to spawn a new generation of thinkers. </p>
+
+
+                <p>Ability to mentor motivates, train and inspire team players at all levels and facilitate comfortable interactions of the 
+                    target audiences at local, national and international levels.</p>
+
+​
+
+                    <p>Excellence in teaching and learning research and community engagement</p>
+                    the student experience ,
+                    Build a service culture ,
+                    Optimize the multi campus model ,
+                    Develop human resources ,
+                    Achieve financial viability and sustainability ,
+                    Institutional growth and development ,
+                    Infrastructure and assets management ,
+                    Resources management Short-term challenge
+                        </div>
+                    </div>
+                </div>
+                <div class="vision-box">
+                    <i class="fas fa-eye icon"></i>
+                    <h3>Our Vision</h3>
+
+                    <p>INTEGRITY: To respect and affirm the dignity,  equality, freedom and rich cultural diversity of all human beings as 
+                       the basis for peace and social justice the pursuit of truth, intellectual honesty and openness to ideas.</p>
+
+​
+
+                    <p>EXCELLENCE: To be recognized as an international centre for excellence that is both rooted in its environment and 
+                    sensitive to the challenges of many human progress and to foster a culture of teaching and learning and research 
+                    excellence  in the institution as a basic minimum requirement for living up to the claim of being a site of knowledge generation.</p>
+
+​
+
+                    <p>INNOVATION: To focus on the challenges presented by new information technologies, 
+                    information management systems and processes and opportunities for innovation and to do so in an 
+                    enterprising way that benefits the institution and humanity.</p>
+
+​
+
+                    <p>ETHICS: The attainment of the highest professional  and ethical standards in 
+                    teaching learning and research community engagement and corporate governance</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs Section -->
+    <section class="programs" id="programs">
+        <h2>Our Programs</h2>
+        <div class="programs-grid">
+            <div class="program-card">
+                <i class="fas fa-book-medical"></i>
+                <h3>African Medicine</h3>
+                <p>6-month certification program</p>
+            </div>
+            <div class="program-card">
+                <i class="fas fa-toolbox"></i>
+                <h3>Basic Plumbing</h3>
+                <p>6-month vocational training</p>
+            </div>
+            <div class="program-card">
+                <i class="fas fa-fire"></i>
+                <h3>Welding</h3>
+                <p>6-month metalwork certification</p>
+            </div>
+            <div class="program-card">
+                <i class="fas fa-soap"></i>
+                <h3>Soap Making</h3>
+                <p>6-month artisanal production</p>
+            </div>
+            <div class="program-card">
+                <i class="fas fa-candle-holder"></i>
+                <h3>Candle Making</h3>
+                <p>6-month creative design course</p>
+            </div>
+            <div class="program-card">
+                <i class="fas fa-tshirt"></i>
+                <h3>Sewing</h3>
+                <p>6-month garment construction</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery" id="gallery">
+        <h2>The Board Members</h2>
+        <div class="gallery-grid">
+           
+            <div class="gallery-item">
+                <img src="C:\Users\sokhetyes\Downloads\Website\Screenshot 2025-05-20 141422.png" alt="Group of students">
+                <div class="gallery-caption">
+                                <b>Noluvo Mbele</b>
+
+                                <p>Secretary</p>
+                            
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="C:\Users\sokhetyes\Downloads\Website\Screenshot 2025-05-20 141356.png" alt="Teacher helping student">
+                <div class="gallery-caption">
+                    <b>Lindiwe Mjoli</b>
+
+                    <p>Deputy Chairperson</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="C:\Users\sokhetyes\Downloads\Website\Screenshot 2025-05-20 141338.png" alt="Graduation ceremony">
+                <div class="gallery-caption">
+                        <b>Athandile Jili</b>
+
+                        <p>Chairperson</p>
+                    
+                    </div>
+            </div>
+            <div class="gallery-item">
+                <img src="C:\Users\sokhetyes\Downloads\Website\Screenshot 2025-05-20 141247.png" alt="Workshop session">
+                <div class="gallery-caption">
+                    <b>Skhumbuzo Jokweni</b>
+
+                    <p>Trainner</p>
+                
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="C:\Users\sokhetyes\Downloads\Website\Screenshot 2025-05-20 174052.png" alt="Campus building">
+                <div class="gallery-caption">
+                            <b>Steve Makhetha</b>
+
+                            <p>Admin Clerk</p>
+                        
+                        </div>
+            </div>
+        </div>
+    </section>
+
+
+
+  <section class="gallery" id="gallery">
+        <h2>Galary</h2>
+        <div class="gallery-grid">
+           
+            <div class="gallery-item">
+                <img src="C:\Users\sokhetyes\Downloads\Website\Screenshot 2025-05-20 203226.png" alt="Group of students">
+                
+            </div>
+            <div class="gallery-item">
+                <img src="C:\Users\sokhetyes\Downloads\Website\Screenshot 2025-05-20 203207.png" alt="Teacher helping student">
+                
+            </div>
+            <div class="gallery-item">
+                <img src="C:\Users\sokhetyes\Downloads\Website\Screenshot 2025-05-20 203157.png" alt="Graduation ceremony">
+                
+            </div>
+
+
+            <div class="gallery-item">
+                <img src="C:\Users\sokhetyes\Downloads\Website\Screenshot 2025-05-20 203146.png" alt="Workshop session">
+                
+            </div>
+            <div class="gallery-item">
+                <img src="C:\Users\sokhetyes\Downloads\Website\Screenshot 2025-05-20 203130.png" alt="Campus building">
+                
+                
+            </div>
+
+            <div class="gallery-item">
+                <img src="C:\Users\sokhetyes\Downloads\Website\Screenshot 2025-05-20 203114.png" alt="Campus building">
+                
+            </div>
+
+            
+        </div>
+    </section>
+
+
+
+
+
+    <!-- Fees Section -->
+    <section class="fees" id="fees">
+        <h2>Program Fees</h2>
+        <div class="fees-grid">
+            <div class="fee-card">
+                <i class="fas fa-book-medical"></i>
+                <h3>African Medicine</h3>
+                <p>R2100 total</p>
+            </div>
+            <div class="fee-card">
+                <i class="fas fa-toolbox"></i>
+                <h3>Basic Plumbing</h3>
+                <p>R2100 total</p>
+            </div>
+            <div class="fee-card">
+                <i class="fas fa-fire"></i>
+                <h3>Welding</h3>
+                <p>R2100 total</p>
+            </div>
+            <div class="fee-card">
+                <i class="fas fa-soap"></i>
+                <h3>Soap Making</h3>
+                <p>R2100 total</p>
+            </div>
+            <div class="fee-card">
+                <i class="fas fa-candle-holder"></i>
+                <h3>Candle Making</h3>
+                <p>R2100 total</p>
+            </div>
+            <div class="fee-card">
+                <i class="fas fa-tshirt"></i>
+                <h3>Sewing</h3>
+                <p>R2100 total</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Application Section with Email Submission -->
+    <section class="application" id="apply">
+        <div class="application-form">
+            <h2>Admission Application</h2>
+            <form id="admissionForm" action="https://formsubmit.co/sakhokuhleafricanmedicine@gmail.com" method="POST">
+                <!-- FormSubmit Configuration -->
+                <input type="hidden" name="_subject" value="New SSAMC Application">
+                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="_next" value="https://yourwebsite.com/thank-you.html">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_autoresponse" value="Thank you for applying to SSAMC. We have received your application and will contact you shortly.">
+
+                <!-- Personal Information -->
+                <div class="form-section">
+                    <h3>Personal Information</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <input type="text" name="full_name" placeholder="Full Name*" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="email" placeholder="Email*" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <input type="tel" name="phone" placeholder="Phone Number*" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="id_number" placeholder="ID/Passport Number*" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <input type="date" name="dob" placeholder="Date of Birth*" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="address" placeholder="Physical Address*" required>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Educational Background -->
+                <div class="form-section">
+                    <h3>Educational Background</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <select name="qualification" required>
+                                <option value="">Highest Qualification*</option>
+                                <option>High School</option>
+                                <option>Diploma</option>
+                                <option>Bachelor's Degree</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="institution" placeholder="Institution Name*" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <input type="number" name="graduation_year" placeholder="Graduation Year*" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea name="experience" placeholder="Relevant Experience"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Program Selection -->
+                <div class="form-section">
+                    <h3>Program Selection</h3>
+                    <div class="program-select">
+                        <div class="program-option" onclick="selectProgram(this)">
+                            <h4>African Medicine</h4>
+                            <div class="fee-option">
+                                <input type="radio" name="program" value="African Medicine - R2100 (6 months)" required>
+                                R2100 (6 months)
+                            </div>
+                        </div>
+                        <div class="program-option" onclick="selectProgram(this)">
+                            <h4>Basic Plumbing</h4>
+                            <div class="fee-option">
+                                <input type="radio" name="program" value="Basic Plumbing - R2100 (6 months)" required>
+                                R2100 (6 months)
+                            </div>
+                        </div>
+                        <div class="program-option" onclick="selectProgram(this)">
+                            <h4>Sewing</h4>
+                            <div class="fee-option">
+                                <input type="radio" name="program" value="Sewing - R2100 (6 months)" required>
+                                R2100 (6 months)
+                            </div>
+                        </div>
+                        <div class="program-option" onclick="selectProgram(this)">
+                            <h4>Candle Making</h4>
+                            <div class="fee-option">
+                                <input type="radio" name="program" value="Candle Making - R2100 (6 months)" required>
+                                R2100 (6 months)
+                            </div>
+                        </div>
+                        <div class="program-option" onclick="selectProgram(this)">
+                            <h4>Welding</h4>
+                            <div class="fee-option">
+                                <input type="radio" name="program" value="Welding - R2100 (6 months)" required>
+                                R2100 (6 months)
+                            </div>
+                        </div>
+                        <div class="program-option" onclick="selectProgram(this)">
+                            <h4>Soap Making</h4>
+                            <div class="fee-option">
+                                <input type="radio" name="program" value="Soap Making - R2100 (6 months)" required>
+                                R2100 (6 months)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Payment Details -->
+                <div class="form-section payment-details">
+                    <h3>Payment Information</h3>
+                    <div class="banking-info">
+                        <h4>Banking Details</h4>
+                        <p><strong>Bank Name:</strong> ABSA Bank</p>
+                        <p><strong>Account Holder:</strong> SSAMC Institute</p>
+                        <p><strong>Account Number:</strong> 123 456 7890</p>
+                        <p><strong>Branch Code:</strong> 632005</p>
+                        <p><strong>Reference:</strong> Your ID Number + Program Code</p>
+                    </div>
+                </div>
+
+                <!-- Terms Agreement -->
+                <div class="form-section">
+                    <div class="form-group terms">
+                        <input type="checkbox" id="terms" name="terms_agreed" required>
+                        <label for="terms">I agree to the <a href="#">terms and conditions</a> and confirm all information is accurate*</label>
+                    </div>
+                </div>
+
+                <button type="submit" class="cta-button">Submit Application</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <h2>Contact Us</h2>
+        <div class="contact-details">
+            <i class="fas fa-envelope"></i>
+            <h3>Email</h3>
+            <p>sakhokuhleafricanmedicine@gmail.com</p>
+            
+            <i class="fas fa-phone"></i>
+            <h3>Phone</h3>
+            <p>0720636863</p>
+            
+            <p>All admission applications will be sent to the email address above</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-whatsapp"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+        <p>&copy; 2023 SSAMC. All rights reserved</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Program selection
+        function selectProgram(element) {
+            document.querySelectorAll('.program-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            element.classList.add('selected');
+        }
+
+        // Form validation
+        document.getElementById('admissionForm').addEventListener('submit', function(e) {
+            const selectedProgram = document.querySelector('input[name="program"]:checked');
+            if (!selectedProgram) {
+                e.preventDefault();
+                alert('Please select a program');
+                return false;
+            }
+            return true;
+        });
+
+        // Animation triggers
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        });
+
+        document.querySelectorAll('.program-card, .fee-card, .gallery-item').forEach(card => {
+            card.style.opacity = 0;
+            card.style.transform = 'translateY(50px)';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
